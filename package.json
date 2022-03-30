@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test:viewdetails": "cucumber-js ./Features/ViewMovieDetail/ -r ./Steps/ViewMovieDetail.js"
+    "test:android:viewdetails": "cucumber-js ./Features/ViewMovieDetail/ -r ./android/Steps/ViewMovieDetail.js",
+    "test:ios:viewdetails": "cucumber-js ./Features/ViewMovieDetail/ -r ./ios/Steps/ViewMovieDetail.js"
   },
   "dependencies": {
     "assert": "^2.0.0",

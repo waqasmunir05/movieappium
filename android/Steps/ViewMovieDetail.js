@@ -1,4 +1,4 @@
-var appiumUtils = require("../appium_helpers");
+var appiumUtils = require("../../appium_helpers");
 var wd = require("selenium-webdriver");
 const By = wd.By;
 const until = wd.until;
