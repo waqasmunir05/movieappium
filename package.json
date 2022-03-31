@@ -11,6 +11,6 @@
     "assert": "^2.0.0",
     "chai": "^4.3.6",
     "cucumber": "^7.0.0-rc.0",
-    "selenium-webdriver": "^4.1.1"
+    "webdriverio": "^7.19.2"
   }
 }

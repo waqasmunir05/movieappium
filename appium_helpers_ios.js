@@ -1,4 +1,4 @@
-var wd = require("selenium-webdriver");
+const wdio = require('webdriverio');
 var path = require('path');
 
 var root = process.env.PWD
@@ -14,7 +14,15 @@ var desiredCaps = {
 };
 
 async function appLaunch(){
-    driver = await new wd.Builder().usingServer("http://127.0.0.1:4723/wd/hub").withCapabilities(desiredCaps).build();
+    const driver = await wdio.remote({
+        protocol: "http",
+        host: "127.0.0.1",
+        port: 4723,
+        path: "/wd/hub",
+        capabilities: desiredCaps,
+        desiredCapabilities: desiredCaps,
+      });
+     // driver =  driver.init();
     return driver
 }
 
