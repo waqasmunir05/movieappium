@@ -10,8 +10,8 @@ Before({ timeout: 6000 * 10000 }, async function () {
 })
 
 Given('User on the List of Movies named {string}', async function (movieName) {
-    let el1 = await driver.$("~Search");
-    await el1.click();
+    let searchTabButton = await driver.$("~Search");
+    await searchTabButton.click();
     let el2 = await driver.$$("//XCUIElementTypeSearchField[@name=\"Search\"]");
     await el2[0].setValue("sound of music");
     let el3 = await driver.$$("(//XCUIElementTypeStaticText[@name=\"The Sound of Music\"])");
