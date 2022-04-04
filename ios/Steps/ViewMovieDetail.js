@@ -6,29 +6,35 @@ var driver;
 const commonOptions  = { timeout: 6000 * 10000 }
 Before(commonOptions, async function () {
     driver = await appiumUtils.appLaunch();
-    console.log('app ready');
+   // console.log('app ready');
 
 })
 
-Given('User on the List of Movies named {string}',commonOptions, async function (movieName) {
+Given('I am on Search Screen',commonOptions, async function () {
     let searchTabButton = await driver.$("~Search");
     await searchTabButton.click();
-    let el2 = await driver.$$("//XCUIElementTypeSearchField[@name=\"Search\"]");
-    await el2[0].setValue("sound of music");
-    let el3 = await driver.$$("(//XCUIElementTypeStaticText[@name=\"The Sound of Music\"])");
-    await el3[1].click();
+ 
+    //let el3 = await driver.$$("(//XCUIElementTypeStaticText[@name=\"The Sound of Music\"])");
+   // await el3[1].click();
 
 });
 
-When('Clicked on text with {string}', async function (string) {
+When ('I enter movie name {string}', async function (movieName) {
     // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    // return 'pending';
+    let el2 = await driver.$$("//XCUIElementTypeSearchField[@name=\"Search\"]");
+    await el2[0].setValue(movieName);
 });
 
-Then('I should see Details with year {string}', commonOptions , async function (movieName) {
-    let moviename = await driver.$$("(//XCUIElementTypeStaticText[@name=\"The Sound of Music\"])[1]");
-    assert.equal(moviename,"The Sound of Music");
-    return 'pending';
+Then('I should see Details with year {string} with exact Date {string}', commonOptions , async function (movieDate, exactDate) {
+    await driver.pause(5000)
+    //let dateElements = await driver.$$("//XCUIElementTypeStaticText[starts-with(@name,\""+movieDate+"\")]");
+    let dateElements = await driver.$$("//XCUIElementTypeStaticText[starts-with(@name, \"1965\")]");
+    assert.equal(dateElements.length >= 1, true);
+    const first = dateElements[0];
+    const value = await first.getValue();
+    //consosle.log(value);
+    assert.equal(value, exactDate)
 });
 Given('I am on Featured screen of the application' ,commonOptions , async function () {
     let featuredTab = await driver.$$("//XCUIElementTypeButton[@name=\"Featured\"]");
@@ -47,5 +53,5 @@ Given('I am on Featured screen of the application' ,commonOptions , async functi
 
   Then('system should show list of movies by popularity',commonOptions , async function () {
     // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    // return 'pending';
   });

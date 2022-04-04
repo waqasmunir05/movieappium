@@ -21,6 +21,7 @@ async function appLaunch(){
         path: "/wd/hub",
         capabilities: desiredCaps,
         desiredCapabilities: desiredCaps,
+        logLevel: "warn"
       });
      // driver =  driver.init();
     return driver
